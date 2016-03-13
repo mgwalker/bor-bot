@@ -1,0 +1,15 @@
+{
+  "name": "bor-bot",
+  "version": "1.0.0",
+  "description": "No.",
+  "main": "main.js",
+  "keywords": [
+    ""
+  ],
+  "author": "Greg Walker <bor-bot@darkcooger.net>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "mgwalker/bor-bot"
+  }
+}
