@@ -41,11 +41,16 @@ botkit.spawn({
 botkit.on("ambient", (bot, msg) => {
   isNerfHerder(msg.user).then(is => {
     if(is) {
-      if(Math.random() >= 0.90) {
+      let chance = 0.1;
+      if(msg.text.length > 200) {
+        // 100% chance if a message is 1,500 characters or
+        // more.
+        chance = Math.max(1, 0.2 + (msg.text.length / 1875));
+      }
+
+      if(Math.random() <= chance) {
         bot.reply(msg, `<@${msg.user}> No.`);
       }
     }
   });
-  //console.log("Got something")
-  //bot.reply(msg, "No.");
 });
