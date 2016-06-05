@@ -35,7 +35,8 @@ function isNerfHerder(userID) {
 }
 
 botkit.spawn({
-  token: process.env.SLACK_TOKEN
+  token: process.env.SLACK_TOKEN,
+  retry: Infinity
 }).startRTM();
 
 botkit.on("ambient", (bot, msg) => {
