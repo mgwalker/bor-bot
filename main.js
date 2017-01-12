@@ -39,6 +39,17 @@ botkit.spawn({
   retry: Infinity
 }).startRTM();
 
+botkit.hears(['.*'], ['direct_mention'], (bot, msg) => {
+  console.log('heard a direct mention');
+  isNerfHerder(msg.user).then(is => {
+    if(is) {
+      bot.reply(msg, `<@${msg.user}> No.`);
+    } else {
+      bot.reply(msg, `<@${msg.user}> Yes.`);
+    }
+  })
+})
+
 botkit.on("ambient", (bot, msg) => {
   isNerfHerder(msg.user).then(is => {
     if(is) {
