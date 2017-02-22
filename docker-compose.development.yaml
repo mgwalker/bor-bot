@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  bor-bot:
+    build:
+      context: ./
+      dockerfile: Dockerfile.development
+    volumes:
+      - .:/app
