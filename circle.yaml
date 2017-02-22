@@ -1,0 +1,9 @@
+machine:
+  services:
+    - docker
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - deploy.sh
