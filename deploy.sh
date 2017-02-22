@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-curl -L https://github.com/docker/machine/releases/download/v1.3.0/docker-machine-`uname -s`-`uname -m` > ./docker-machine
+curl -L https://github.com/docker/machine/releases/download/v0.9.0/docker-machine-`uname -s`-`uname -m` > ./docker-machine
 chmod +x ./docker-machine
 
 # Find our deployment key
