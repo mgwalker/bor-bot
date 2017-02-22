@@ -6,7 +6,7 @@ machine:
 
 dependencies:
   pre:
-    - openssl aes-256-cbc -d -in docker-certs -k $DOCKER_CERTS_KEY > docker-certs.zip
+    - openssl aes-256-cbc -d -in deploy -k $DOCKER_CERTS_KEY > deploy.zip
 
 deployment:
   production:
