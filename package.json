@@ -9,7 +9,9 @@
   "author": "Greg Walker <bor-bot@darkcooger.net>",
   "license": "ISC",
   "scripts": {
-    "start": "node main.js"
+    "start": "node main.js",
+    "lint": "eslint --fix *.js scripts/*.js",
+    "test": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -23,5 +25,10 @@
   },
   "engines": {
     "node": ">=6.9 <7.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.16.0",
+    "eslint-config-airbnb-base": "^11.1.0",
+    "eslint-plugin-import": "^2.2.0"
   }
 }

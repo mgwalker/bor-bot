@@ -1,6 +1,6 @@
 const knownUserIDs = { };
 
-let sayNoAdminUsername = process.env.SAY_NO_ADMIN || false;
+const sayNoAdminUsername = process.env.SAY_NO_ADMIN || false;
 let sayNoToUsername = process.env.SAY_NO_TO || false;
 
 function noop() { }
@@ -10,42 +10,40 @@ function isTarget(targetUsername, bot, msg) {
     return Promise.reject();
   }
 
-  if(!knownUserIDs[targetUsername]) {
+  if (!knownUserIDs[targetUsername]) {
     return new Promise((resolve, reject) => {
       bot.api.users.info({ user: msg.user }, (err, response) => {
-        let isHim = false;
-        if(response.ok) {
-          if(response.user.name === targetUsername) {
+        if (response.ok) {
+          if (response.user.name === targetUsername) {
             knownUserIDs[targetUsername] = msg.user;
             return resolve({ bot, msg });
           }
         }
-        reject();
+        return reject();
       });
     });
-  } else {
-    if (knownUserIDs[targetUsername] === msg.user) {
-      return Promise.resolve({ bot, msg })
-    }
-    return Promise.reject();
   }
+  if (knownUserIDs[targetUsername] === msg.user) {
+    return Promise.resolve({ bot, msg });
+  }
+  return Promise.reject();
 }
 
 function justSayNo({ bot, msg }) {
   let chance = 0.10;
-  if(msg.text.length > 200) {
+  if (msg.text.length > 200) {
     // 100% chance if a message is 1,500 characters or more.
     chance = Math.max(1, 0.2 + (msg.text.length / 1875));
   }
 
-  if(Math.random() <= chance) {
+  if (Math.random() <= chance) {
     bot.reply(msg, `<@${msg.user}> No.`);
   }
 }
 
 function setTarget({ bot, msg }) {
-  bot.api.users.info({user: msg.match[1]}, (error, response) => {
-    if(!error && response.ok) {
+  bot.api.users.info({ user: msg.match[1] }, (error, response) => {
+    if (!error && response.ok) {
       sayNoToUsername = response.user.name;
       bot.reply(msg, `Okay, poor ol' <@${msg.match[1]}> will be the target now.`);
     } else {
@@ -72,7 +70,7 @@ function dmClearTarget(bot, msg) {
   isTarget(sayNoAdminUsername, bot, msg).then(clearTarget).catch(noop);
 }
 
-module.exports = function(bot) {
+module.exports = function connectHandlers(bot) {
   bot.on('ambient', ambientResponse);
   bot.hears(['say no to <@(\\S*?)(\\|\\S*)?>'], 'direct_message', dmSetTarget);
   bot.hears(['stop saying no'], 'direct_message', dmClearTarget);

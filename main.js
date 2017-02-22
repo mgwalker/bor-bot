@@ -1,8 +1,7 @@
 const promisify = require('promisify-node');
-const fs = promisify('fs');
-
 require('dotenv').config();
-const request = require('request');
+
+const fs = promisify('fs');
 
 const bot = require('botkit').slackbot({
   debug: false
@@ -14,9 +13,9 @@ bot.spawn({
 }).startRTM();
 
 fs.readdir('./scripts')
-  .then(paths => {
-    for(const path of paths) {
+  .then((paths) => {
+    for (const path of paths) {
       bot.log(`Loading script at ./scripts/${path}`);
-      require(`./scripts/${path}`)(bot)
+      require(`./scripts/${path}`)(bot); // eslint-disable-line
     }
   });
