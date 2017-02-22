@@ -8,7 +8,6 @@
 KEY=$(ls ~/.ssh | egrep '^id_[0-9a-f]{32}$')
 
 # Decrypt and unzip docker machine certs
-openssl aes-256-cbc -d -in docker-certs -k DOCKER_CERTS_KEY > docker-certs.zip
 unzip docker-certs.zip -d certs
 
 # Add remote docker host
