@@ -4,6 +4,6 @@ machine:
 
 deployment:
   production:
-    branch: master
+    branch: tests
     commands:
       - deploy.sh
