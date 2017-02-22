@@ -10,6 +10,6 @@ dependencies:
 
 deployment:
   production:
-    branch: tests
+    branch: master
     commands:
       - ./deploy.sh
