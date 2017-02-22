@@ -1,2 +1,6 @@
-bor-bot:
-  build: ./
+version: "3"
+
+services:
+  bor-bot:
+    build: ./
+    restart: always
