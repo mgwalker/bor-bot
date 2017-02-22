@@ -18,10 +18,10 @@
   "dependencies": {
     "botkit": "0.0.8",
     "dotenv": "^2.0.0",
-    "request": "^2.69.0"
+    "promisify-node": "^0.4.0",
+    "request": "^2.79.0"
   },
   "engines": {
-    "node": ">=5.8 <5.9",
-    "npm": ">=3.8.1 <3.9"
+    "node": ">=6.9 <7.0"
   }
 }
