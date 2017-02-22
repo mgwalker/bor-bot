@@ -6,4 +6,4 @@ deployment:
   production:
     branch: tests
     commands:
-      - deploy.sh
+      - ./deploy.sh
