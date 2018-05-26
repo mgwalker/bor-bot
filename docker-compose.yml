@@ -4,5 +4,5 @@ services:
   bor-bot:
     build:
       context: ./
-      dockerfile: Dockerfile.production
-    restart: always
+    volumes:
+      - .:/app
