@@ -1,9 +1,11 @@
-FROM node:6.9
+FROM node:14
 
 RUN mkdir /app
 WORKDIR /app
 
 ADD ./package.json .
-RUN npm install
+ADD ./package-lock.json .
 
-CMD ["npm", "start"]
+RUN npm ci
+
+CMD npm run start-dev

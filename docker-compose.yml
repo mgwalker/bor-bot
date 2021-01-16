@@ -1,8 +1,15 @@
-version: "3"
-
+version: "3.2"
 services:
-  bor-bot:
-    build:
-      context: ./
+  bor003:
+    build: .
+    image: bor003
+    environment:
+      - LOG_LEVEL=debug
+      - SLACK_SIGNING_SECRET=${SLACK_SIGNING_SECRET}
+      - SLACK_TOKEN=${SLACK_TOKEN}
+    working_dir: /app
     volumes:
-      - .:/app
+      - ./:/app
+      - /app/node_modules
+    ports:
+      - 3000:3000

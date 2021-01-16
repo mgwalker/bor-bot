@@ -1,6 +1,6 @@
 {
   "name": "bor-bot",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "No.",
   "main": "main.js",
   "keywords": [
@@ -9,26 +9,26 @@
   "author": "Greg Walker <bor-bot@darkcooger.net>",
   "license": "ISC",
   "scripts": {
-    "start": "node main.js",
-    "lint": "eslint --fix *.js scripts/*.js",
-    "test": "npm run lint"
+    "lint": "18f-eslint '**/*.js'",
+    "start": "node src/main.js",
+    "start-dev": "npx nodemon src/main.js"
   },
   "repository": {
     "type": "git",
     "url": "mgwalker/bor-bot"
   },
   "dependencies": {
-    "botkit": "0.0.8",
-    "dotenv": "^2.0.0",
-    "promisify-node": "^0.4.0",
-    "request": "^2.79.0"
+    "@slack/bolt": "^3.0.0",
+    "dotenv": "^8.2.0",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.32"
   },
   "engines": {
-    "node": ">=6.9 <7.0"
+    "node": ">=14.13.1 <15.0"
   },
   "devDependencies": {
-    "eslint": "^3.16.0",
-    "eslint-config-airbnb-base": "^11.1.0",
-    "eslint-plugin-import": "^2.2.0"
-  }
+    "@18f/18f-eslint": "^1.2.5",
+    "prettier": "^2.2.1"
+  },
+  "prettier": {}
 }
