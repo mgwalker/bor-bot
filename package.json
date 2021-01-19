@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "No.",
   "main": "main.js",
+  "type":"module",
   "keywords": [
     ""
   ],

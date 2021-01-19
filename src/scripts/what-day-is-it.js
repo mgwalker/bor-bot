@@ -4,12 +4,14 @@
    with what we've got.
 */
 
-const { directMention } = require("@slack/bolt");
-const moment = require("moment-timezone");
+import bolt from "@slack/bolt";
+import moment from "moment-timezone";
+
+const { directMention } = bolt;
 
 const march1 = moment.tz("2020-03-01T00:00:00Z", "America/New_York");
 
-module.exports = (app) => {
+export default (app) => {
   app.message(directMention(), /what day is it/i, ({ say }) => {
     const now = moment.tz("America/New_York");
 

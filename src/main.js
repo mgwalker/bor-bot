@@ -1,7 +1,12 @@
-require("dotenv").config();
-const { App, LogLevel } = require("@slack/bolt");
-const fs = require("fs").promises;
-const path = require("path");
+import bolt from "@slack/bolt";
+import { promises as fs } from "fs";
+import { join } from "path";
+import { config } from "dotenv";
+import { dirname } from "./util.js";
+
+const { App, LogLevel } = bolt;
+
+config();
 
 const app = new App({
   token: process.env.SLACK_TOKEN,
@@ -15,12 +20,12 @@ const port = process.env.PORT || 3000;
 app.start(port).then(async () => {
   app.logger.info(`Bot started on ${port}`);
 
-  const files = (await fs.readdir(path.join(__dirname, "scripts"))).filter(
+  const files = (await fs.readdir(join(dirname, "scripts"))).filter(
     (file) => file.endsWith(".js") && !file.endsWith(".test.js")
   );
 
-  files.forEach((file) => {
-    const script = require(`./scripts/${file}`); // eslint-disable-line global-require,import/no-dynamic-require
+  files.forEach(async (file) => {
+    const script = await import(`./scripts/${file}`); // eslint-disable-line global-require,import/no-dynamic-require
     if (typeof script === "function") {
       app.logger.info(`Loading bot script from: ${file}`);
       script(app);
