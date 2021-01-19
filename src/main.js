@@ -26,9 +26,9 @@ app.start(port).then(async () => {
 
   files.forEach(async (file) => {
     const script = await import(`./scripts/${file}`); // eslint-disable-line global-require,import/no-dynamic-require
-    if (typeof script === "function") {
+    if (typeof script.default === "function") {
       app.logger.info(`Loading bot script from: ${file}`);
-      script(app);
+      script.default(app);
     }
   });
 });
