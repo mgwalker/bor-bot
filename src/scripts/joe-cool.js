@@ -2,8 +2,7 @@ import moment from "moment-timezone";
 import { scheduleJob } from "node-schedule";
 
 const inauguration = moment
-  // .tz("2021-01-20T12:00:00", "America/New_York")
-  .tz("2021-01-18T23:24:00", "America/Chicago")
+  .tz("2021-01-20T12:00:00", "America/New_York")
   .toDate();
 
 export default ({
@@ -13,7 +12,7 @@ export default ({
 }) => {
   scheduleJob(inauguration, () => {
     postMessage({
-      channel: "bot-test-private",
+      channel: "chat",
       icon_emoji: ":staycool-biden:",
       text: "I'm the President now.",
       token: process.env.SLACK_TOKEN,
@@ -22,7 +21,7 @@ export default ({
 
     setTimeout(() => {
       postMessage({
-        channel: "bot-test-private",
+        channel: "chat",
         icon_emoji: ":see-what-you-did-kamala:",
         text: "And I'm the Vice President.",
         token: process.env.SLACK_TOKEN,
@@ -32,7 +31,7 @@ export default ({
 
     setTimeout(() => {
       postMessage({
-        channel: "bot-test-private",
+        channel: "chat",
         icon_emoji: ":staycool-biden:",
         text: "Fuck yeah you are.",
         token: process.env.SLACK_TOKEN,
@@ -42,9 +41,9 @@ export default ({
 
     setTimeout(() => {
       postMessage({
-        channel: "bot-test-private",
+        channel: "chat",
         icon_emoji: ":see-what-you-did-kamala:",
-        text: "Fuck yeah",
+        text: "Fuck yeah.",
         token: process.env.SLACK_TOKEN,
         username: "Vice President Kamala Harris",
       });
@@ -52,7 +51,7 @@ export default ({
 
     setTimeout(() => {
       postMessage({
-        channel: "bot-test-private",
+        channel: "chat",
         icon_emoji: ":staycool-biden:",
         text: "Murica.",
         token: process.env.SLACK_TOKEN,
