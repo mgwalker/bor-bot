@@ -9,7 +9,7 @@ import moment from "moment-timezone";
 
 const { directMention } = bolt;
 
-const endOfMarch = moment.tz("2021-01-19T23:59:59Z", "America/New_York");
+const endOfMarch = moment.tz("2021-01-19T23:59:59", "America/New_York");
 
 export default (app) => {
   app.message(directMention(), /what day is it/i, ({ say }) => {
